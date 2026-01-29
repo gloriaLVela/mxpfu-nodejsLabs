@@ -1,4 +1,5 @@
 // Import Express and user routes, create an instance of Express
+// Initial setup for an Express server
 const express = require('express');
 const routes = require('./routes/users.js');
 const app = express();
