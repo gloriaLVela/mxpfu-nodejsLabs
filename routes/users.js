@@ -31,8 +31,18 @@ router.get("/",(req,res)=>{
 
 // GET by specific ID request: Retrieve a single user with email ID
 router.get("/:email",(req,res)=>{
-  // Copy the code here
-  res.send("Yet to be implemented")//This line is to be replaced with actual return value
+    // Extract the email parameter from the request URL
+  const email = req.params.email;
+
+  // Search the users array for a matching email
+  const user = users.find(u => u.email === email);
+
+  // Return the user if found, otherwise send a 404 error
+  if (user) {
+    res.send(user);
+  } else {
+    res.status(404).send("User not found");
+  }
 });
 
 
