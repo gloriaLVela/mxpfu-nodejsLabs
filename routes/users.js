@@ -45,6 +45,22 @@ router.get("/:email", (req, res) => {
     }
 });
 
+// GET by last name request: Retrieve a single user with last name
+router.get("/lastName/:lastName", (req, res) => {
+    // Extract the email parameter from the request URL
+    const lastName = req.params.lastName;
+
+    // Search the users array for a matching email
+    const user = users.filter(u => u.lastName=== lastName);
+
+    // Return the user if found, otherwise send a 404 error
+    if (user) {
+        res.send(user);
+    } else {
+        res.status(404).send("User not found");
+    }
+});
+
 
 // POST request: Create a new user
 router.post("/", (req, res) => {
