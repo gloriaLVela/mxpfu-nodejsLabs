@@ -29,6 +29,23 @@ router.get("/", (req, res) => {
     res.send(JSON.stringify({users}, null, 4));
 });
 
+// Function to convert a date string in the format "dd-mm-yyyy" to a Date object
+function getDateFromString(strDate) {
+    let [dd, mm, yyyy] = strDate.split('-');
+    return new Date(yyyy + "/" + mm + "/" + dd);
+}
+
+// GET request: Retrieve all users sorted by DOB
+router.get("/sort", (req, res) => {
+    // Copy the code here
+    const sortedUsers = users.sort(function(a, b) {
+        let d1 = getDateFromString(a.DOB);
+        let d2 = getDateFromString(b.DOB);
+        return d1 - d2;
+    });
+    res.send(JSON.stringify({sortedUsers}, null, 4));
+});
+
 // GET by specific ID request: Retrieve a single user with email ID
 router.get("/:email", (req, res) => {
     // Extract the email parameter from the request URL
