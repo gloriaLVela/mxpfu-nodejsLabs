@@ -49,7 +49,23 @@ router.get("/:email",(req,res)=>{
 // POST request: Create a new user
 router.post("/",(req,res)=>{
   // Copy the code here
-  res.send("Yet to be implemented")//This line is to be replaced with actual return value
+  // Extract the parameters
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const email = req.body.email;
+  const dob = req.body.DOB;
+
+  let newUser = {
+    "firstName": firstName,
+    "lastName": lastName,
+    "email":email,
+    "DOB":dob
+    }
+
+    users.push(newUser);
+
+
+  res.send(users)//This line is to be replaced with actual return value
 });
 
 
